@@ -1,0 +1,1 @@
+- Always consider Python in version 3.12
