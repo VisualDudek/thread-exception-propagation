@@ -22,3 +22,5 @@ Exceptions in worker threads NOT propagating is the default behavior across Pyth
 - `ThreadPoolExecutor` submit and collect results examples. **005**
 - **005** there is trick taht make it hard to read, `as_completed` takes `fs: Iterable` The sequnce of Futures, in code example dict is passed BUT with keys as futures which when iterate -> sequence of Futures. 
 - **006** shows that feature`.result()` call is blocking
+- how to catch exception in thread, **007**, refactor `time.sleep(2)` part into `as_completed()`
+- numbering of task is wrong -> now I see why usefull dict{future: data} **008**
