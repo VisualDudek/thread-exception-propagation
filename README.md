@@ -3,23 +3,40 @@
 Exceptions in worker threads NOT propagating is the default behavior across Python concurrency models.
 
 
-- `threading` primitives: `.Thread`
-- `concurrent.futures` module provide a high-level interface for async. exacuting callables.
+- `threading` primitives: class `.Thread`.Ciekawa podejście do konstrukora, który przyjmuje jedynie kwargs. What are main methods? `.start()` and `.join()`
+- ciekawy trick na przegląd istotnych obiektów "exportowanych" przez moduł -> przegląd listy `__all__` e.g. `threading.py`.
+- `concurrent.futures` module provide a high-level interface for async. exacuting callables. 
 - `concurrent.futures` primitives: `.as_completed`
 - why it is important to run `.join()` on thread? after `.start()`?
 - howto using threading wrap blocking teask e.g. `time.sleep` to run it in concurrent way
 - does `future.rsult()` call is blocking? I think yes.
+- how to return work from thread?
+
+## Assignments
+
+Show me:
+- that by default main prog. wait for thread to finish. **009**
+- that raised exception in thread do not propagate to main prog.
+
 
 
 ## Threading intro
 
-- by default new thread run as non-daemon, inherit from main thread. `002`
+- by default new thread run as non-daemon, inherit from main thread. **002**
+```python
+# threading.py
+        if daemon is not None:
+            if daemon and not _daemon_threads_allowed():
+                raise RuntimeError('daemon threads are disabled in this (sub)interpreter')
+            self._daemonic = daemon
+        else:
+            self._daemonic = current_thread().daemon # inherit daemon True/False from current thread
+```
 - main program run as non-deamon. `003`
 - Interpreter lifecycle calls `threading._shutdown` at the finish of the main program; it is not handled by the `atexit` module.
-
 - `_thread_shutdown()` is a C-level fn. called at the very end of `threading._shutdown()`
 - `_thread` module is implementd in `cpython/Modules/_threadmodule.c` file. It is intended to be used as a Python-exposed C function for the `_thread` module.
-- `ThreadPoolExecutor` submit and collect results examples. **005**
+- `ThreadPoolExecutor` from `concurrent.futures` lib. submit and collect results examples. **005**
 - **005** there is trick taht make it hard to read, `as_completed` takes `fs: Iterable` The sequnce of Futures, in code example dict is passed BUT with keys as futures which when iterate -> sequence of Futures.
 - **006** shows that feature`.result()` call is blocking
 - how to catch exception in thread, **007**, refactor `time.sleep(2)` part into `as_completed()`
