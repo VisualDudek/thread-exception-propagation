@@ -4,6 +4,7 @@ Exceptions in worker threads NOT propagating is the default behavior across Pyth
 
 
 - `threading` primitives: class `.Thread`.Ciekawa podejście do konstrukora, który przyjmuje jedynie kwargs. What are main methods? `.start()` and `.join()`
+- dlaczego konstruktor `.Thread` sypie błędem przy tupli z intem, `(1)` **012** GOTCHA `(1)` vs. `(1,)`
 - ciekawy trick na przegląd istotnych obiektów "exportowanych" przez moduł -> przegląd listy `__all__` e.g. `threading.py`.
 - `concurrent.futures` module provide a high-level interface for async. exacuting callables. 
 - `concurrent.futures` primitives: `.as_completed`
@@ -11,16 +12,23 @@ Exceptions in worker threads NOT propagating is the default behavior across Pyth
 - howto using threading wrap blocking teask e.g. `time.sleep` to run it in concurrent way
 - does `future.rsult()` call is blocking? I think yes.
 - how to return work from thread?
+- how to communicate between threads? `queue.Queue`
+- `queue.Queue` is Python primary thread-safe data structure for commuxnication between threads.
+- producer-consumer pattern
+- why `q.task_done()` is important? i w jaki sposób śledzi który element z kojeki jest teraz "obrabiany"?
+- naturlane jest myślenie o jednej kolejce i kilku workerach, ale kolejka może być jedynie łacznikiem pomiędzy kilkoma instancjami(wątkami) producentów a multi-workerami
+- `g.get()` without timeout will block forever if queue empty ? Zawsze do zastanowienia się jak oznaczyć że nie będzie więcej pracy dla consumera czyli jak odblolować `q.get()`?
+
 
 ## Assignments
 
 Show me:
 - that by default main prog. wait for thread to finish. **009**
-- that raised exception in thread do not propagate to main prog.
+- that raised exception in thread do not propagate to main prog. **010**
 
 
 
-## Threading intro
+## Takeaway
 
 - by default new thread run as non-daemon, inherit from main thread. **002**
 ```python
@@ -41,6 +49,11 @@ Show me:
 - **006** shows that feature`.result()` call is blocking
 - how to catch exception in thread, **007**, refactor `time.sleep(2)` part into `as_completed()`
 - numbering of task is wrong -> now I see why usefull dict{future: data} **008**
+- when thread raise eception it will be printed into stderr BUT will not stop main prog. **010**
+- `q.tack_done()` jedynie decrementuje counter kolejki, ma znaczenie jedynie dla `q.join()` kiedy moża odblokować główny wątek. **011**
+- multi workers, one queue **012**
+- multi producer-consumer pattern with queue as communication data structure **013**
+
 
 ## Comprehensive Learning Path
 
