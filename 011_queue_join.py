@@ -9,7 +9,7 @@ def worker():
         item = q.get()
         print(f'Working on {item}')
         print(f'Finished {item}')
-        q.task_done()
+        q.task_done() # comment to see that q.join() will block forever
         time.sleep(0.5)
 
 # Turn-on the worker thread.
