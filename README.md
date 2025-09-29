@@ -18,6 +18,8 @@ Exceptions in worker threads NOT propagating is the default behavior across Pyth
 - why `q.task_done()` is important? i w jaki sposób śledzi który element z kojeki jest teraz "obrabiany"?
 - naturlane jest myślenie o jednej kolejce i kilku workerach, ale kolejka może być jedynie łacznikiem pomiędzy kilkoma instancjami(wątkami) producentów a multi-workerami
 - `g.get()` without timeout will block forever if queue empty ? Zawsze do zastanowienia się jak oznaczyć że nie będzie więcej pracy dla consumera czyli jak odblolować `q.get()`?
+- PROBLEM reaktywności do rozwązania: na przykładzie TUI file managers, po lewej mam w kolumnie listę plików tekstowych, przechodząc po nich po prawej wyświetla mi się zawartosć pliku ALE odczytywanie pliku nie jest operacją blokującą -> moge przechodzić dalej anulując poprzednie zaczytywanie pliku.
+- dla `Queue.get()`jaka jest różnica pomiędzy `block=True`(default) a `block=False` i `block=True, timeout=N`, opisz exception `queue.Empty`
 
 
 ## Assignments
@@ -53,6 +55,7 @@ Show me:
 - `q.tack_done()` jedynie decrementuje counter kolejki, ma znaczenie jedynie dla `q.join()` kiedy moża odblokować główny wątek. **011**
 - multi workers, one queue **012**
 - multi producer-consumer pattern with queue as communication data structure **013**
+- a simulation of a TUI file manager with reactive file preview that handles the cancellation problem **014**
 
 
 ## Comprehensive Learning Path
