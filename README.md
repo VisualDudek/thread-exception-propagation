@@ -60,7 +60,7 @@ Show me:
 ### Foundation Level (Week 1) - Files 000-003
 
 **Learning Objectives:**
-1. **Understand Thread Creation and Execution** (000_threading.py)
+1. **Understand Thread Creation and Execution**
    - Learn Thread class instantiation with target and args
    - Understand start() vs direct function calls
    - Master the critical importance of join() for synchronization
