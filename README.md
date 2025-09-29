@@ -49,7 +49,7 @@ Show me:
 - **006** shows that feature`.result()` call is blocking
 - how to catch exception in thread, **007**, refactor `time.sleep(2)` part into `as_completed()`
 - numbering of task is wrong -> now I see why usefull dict{future: data} **008**
-- when thread raise eception it will be printed into stderr BUT will not stop main prog. **010**
+- when thread raise eception it will be printed into stderr BUT will not stop main prog. **010**, debuger jest na tyle sprytny że zatrzymuje działąnie programu, natomiast runtime np. `uv run [.py]` puszcza dalej.
 - `q.tack_done()` jedynie decrementuje counter kolejki, ma znaczenie jedynie dla `q.join()` kiedy moża odblokować główny wątek. **011**
 - multi workers, one queue **012**
 - multi producer-consumer pattern with queue as communication data structure **013**
@@ -58,11 +58,6 @@ Show me:
 ## Comprehensive Learning Path
 
 ### Foundation Level (Week 1) - Files 000-003
-
-**Prerequisites:**
-- Basic Python knowledge (functions, classes, imports)
-- Understanding of sequential vs concurrent execution concepts
-- Familiarity with function arguments and return values
 
 **Learning Objectives:**
 1. **Understand Thread Creation and Execution** (000_threading.py)
