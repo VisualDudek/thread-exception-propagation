@@ -57,7 +57,16 @@ Show me:
 - multi workers, one queue **012**
 - multi producer-consumer pattern with queue as communication data structure **013**
 - a simulation of a TUI file manager with reactive file preview that handles the cancellation problem **014**
-
+- `threading.Event()` why not simple boolean? **015**
+- nie rozumiem tego przygkładu, o co chodzi z CPU cache or register? **016**
+- odrobine naciągany przykład jeśli używany `Queue` **017**
+- race condition example **018**
+- ten wzorcowy przykład **019** nie pokazuje wprost przewagi `Event()` nad boolen a jedynie implementacje, zobacz kolejne przykłady e.g. `.wait()`
+- przykład bez marnowania CPU na czekanie **020**
+- przykład z `.wait(timeout=)` **021**
+- multiple waiters, **022**
+- **023** `.event.clear()` oj tutaj chyba łatwo zepsuć ten przykład jeśli controller za szybko będzie ustawiał event.
+- tutaj chyba ai coś pomyliło z timeoutem **024**
 
 ## Comprehensive Learning Path
 
