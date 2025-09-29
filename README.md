@@ -20,6 +20,7 @@ Exceptions in worker threads NOT propagating is the default behavior across Pyth
 - `g.get()` without timeout will block forever if queue empty ? Zawsze do zastanowienia się jak oznaczyć że nie będzie więcej pracy dla consumera czyli jak odblolować `q.get()`?
 - PROBLEM reaktywności do rozwązania: na przykładzie TUI file managers, po lewej mam w kolumnie listę plików tekstowych, przechodząc po nich po prawej wyświetla mi się zawartosć pliku ALE odczytywanie pliku nie jest operacją blokującą -> moge przechodzić dalej anulując poprzednie zaczytywanie pliku.
 - dla `Queue.get()`jaka jest różnica pomiędzy `block=True`(default) a `block=False` i `block=True, timeout=N`, opisz exception `queue.Empty`
+- co to jest za primitive `threading.Event()`? i jaką ma przewagę nad zwykłym bool True/False ? GOTCHA tak naprawde to duży temat ze względu na Memory visibility, Efficient waiting, Timeout support, Multiple waiters, Thread-safe, CPU efficiency. Kolejne GOTCHA simple boolean might appear to work in many cases!!! uuuuu to musi boleć.
 
 
 ## Assignments
