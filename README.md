@@ -21,6 +21,22 @@ Exceptions in worker threads NOT propagating is the default behavior across Pyth
 - PROBLEM reaktywności do rozwązania: na przykładzie TUI file managers, po lewej mam w kolumnie listę plików tekstowych, przechodząc po nich po prawej wyświetla mi się zawartosć pliku ALE odczytywanie pliku nie jest operacją blokującą -> moge przechodzić dalej anulując poprzednie zaczytywanie pliku.
 - dla `Queue.get()`jaka jest różnica pomiędzy `block=True`(default) a `block=False` i `block=True, timeout=N`, opisz exception `queue.Empty`
 - co to jest za primitive `threading.Event()`? i jaką ma przewagę nad zwykłym bool True/False ? GOTCHA tak naprawde to duży temat ze względu na Memory visibility, Efficient waiting, Timeout support, Multiple waiters, Thread-safe, CPU efficiency. Kolejne GOTCHA simple boolean might appear to work in many cases!!! uuuuu to musi boleć.
+- nowy termin `busy wait` loop
+- aaa czyli jest coś takiego jak `threading.Condition()` i jak to się ma do `.Event()`
+- jak w Pythonie zaimplementować non-blocking keyboard input without busy wait loop? I dlaczego najlepszym rozwiązaniem jest Event-driven with asyncio?
+- Co to tak naprawde "Event-Driven" i jaka jest róznica vs. np. "Polling" 
+- terminal Cooked Mode vs. Raw Mode, jest jeszcze Cbreak Mode? GOTCHA curses handles everything
+```python
+import curses
+
+def main(stdscr):
+    # Curses sets up terminal automatically
+    stdscr.nodelay(True)
+    key = stdscr.getch()
+    # Everything cleaned up automatically
+
+curses.wrapper(main)  # Terminal setup/restore handled for you
+```
 
 
 ## Assignments
@@ -56,7 +72,7 @@ Show me:
 - `q.tack_done()` jedynie decrementuje counter kolejki, ma znaczenie jedynie dla `q.join()` kiedy moża odblokować główny wątek. **011**
 - multi workers, one queue **012**
 - multi producer-consumer pattern with queue as communication data structure **013**
-- a simulation of a TUI file manager with reactive file preview that handles the cancellation problem **014**
+- a simulation of a TUI file manager with reactive file preview that handles the cancellation problem **014**, ciekawe że ai prponuje komunikację do workera przez int-a a nie coś typu thread-safe. Polling Loop in UI znajduje sie w `method:sumulate_user_interaction`
 - `threading.Event()` why not simple boolean? **015**
 - nie rozumiem tego przygkładu, o co chodzi z CPU cache or register? **016**
 - odrobine naciągany przykład jeśli używany `Queue` **017**
@@ -67,6 +83,8 @@ Show me:
 - multiple waiters, **022**
 - **023** `.event.clear()` oj tutaj chyba łatwo zepsuć ten przykład jeśli controller za szybko będzie ustawiał event.
 - tutaj chyba ai coś pomyliło z timeoutem **024**
+- efficient loop using select lib. **026**
+- **028** spory przełom, 
 
 ## Comprehensive Learning Path
 
