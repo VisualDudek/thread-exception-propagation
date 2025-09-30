@@ -37,6 +37,14 @@ def main(stdscr):
 
 curses.wrapper(main)  # Terminal setup/restore handled for you
 ```
+- flags for terminal settings are stored in the kernel, attached to the terminal device e.g.:
+```bash
+tty
+# or
+ls -l /proc/$$/fd/0
+> /proc/123/fd/0 -> /dev/pts/7
+```
+- use `stty` to print or change termial charcteristics. checkl man for stty -> "Combination settings"
 
 
 ## Assignments
