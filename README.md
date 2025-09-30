@@ -44,7 +44,7 @@ tty
 ls -l /proc/$$/fd/0
 > /proc/123/fd/0 -> /dev/pts/7
 ```
-- use `stty` to print or change termial charcteristics. checkl man for stty -> "Combination settings"
+- use `stty` to print or change termial charcteristics. checkl man for stty -> "Combination settings" GOTCHA
 
 
 ## Assignments
