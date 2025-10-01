@@ -1,6 +1,7 @@
 # Exception propagation in concurrency models
 
 Exceptions in worker threads NOT propagating is the default behavior across Python concurrency models.
+Using VSCode python debbuger will catch exeption in thread and stop program BUT runtime will not stop, only print exception on stderr. 
 
 
 - `threading` primitives: class `.Thread`.Ciekawa podejście do konstrukora, który przyjmuje jedynie kwargs. What are main methods? `.start()` and `.join()`
@@ -93,6 +94,13 @@ Show me:
 - tutaj chyba ai coś pomyliło z timeoutem **024**
 - efficient loop using select lib. **026**
 - **028** spory przełom, 
+- ai example trick, zobacz jak jednorazowo w pętli przekazuje to puli wątków `task_failing`:
+```python
+    for i in range(5):
+        thread = threading.Thread(target=task_failing if i == 2 else task, args=(i,))
+        threads.append(thread)
+        thread.start()
+```
 
 ## Comprehensive Learning Path
 
