@@ -72,8 +72,12 @@ Show me:
 - Interpreter lifecycle calls `threading._shutdown` at the finish of the main program; it is not handled by the `atexit` module.
 - `_thread_shutdown()` is a C-level fn. called at the very end of `threading._shutdown()`
 - `_thread` module is implementd in `cpython/Modules/_threadmodule.c` file. It is intended to be used as a Python-exposed C function for the `_thread` module.
+- według moich ustaleń `cpython/Python/pylifecycle.c` funkcja `wait_for_thread_shutdown` wywołuje fn pythona `threading._shutdown` która przez C-API wywołuje C-code fn:`_thread_shutdown`, `wait_for_thread_shutdown` jest wywoływane przez `make_pre_finalization_calls` w `pylifecycle.c`
+Najciekawsze z tego to jest to jak C wczutuje moduły Pythona i wywołuje fn-Pythona który wywołuje fn-C.
 - `ThreadPoolExecutor` from `concurrent.futures` lib. submit and collect results examples. **005**
 - **005** there is trick taht make it hard to read, `as_completed` takes `fs: Iterable` The sequnce of Futures, in code example dict is passed BUT with keys as futures which when iterate -> sequence of Futures.
+- `executor.submit()` vs. `executor.map()` **005**
+- dla context managera `ThreadPoolExecutor` exception jest propagowany ALE nie automatycznie np. dopiery wtedy gdy wywołamy metode `.result()` aby sprawdzić wynik lub w przypadku `executor.map()` **005a** oraz **005b**
 - **006** shows that feature`.result()` call is blocking
 - how to catch exception in thread, **007**, refactor `time.sleep(2)` part into `as_completed()`
 - numbering of task is wrong -> now I see why usefull dict{future: data} **008**
