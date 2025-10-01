@@ -74,14 +74,18 @@ Show me:
 - `_thread` module is implementd in `cpython/Modules/_threadmodule.c` file. It is intended to be used as a Python-exposed C function for the `_thread` module.
 - według moich ustaleń `cpython/Python/pylifecycle.c` funkcja `wait_for_thread_shutdown` wywołuje fn pythona `threading._shutdown` która przez C-API wywołuje C-code fn:`_thread_shutdown`, `wait_for_thread_shutdown` jest wywoływane przez `make_pre_finalization_calls` w `pylifecycle.c`
 Najciekawsze z tego to jest to jak C wczutuje moduły Pythona i wywołuje fn-Pythona który wywołuje fn-C.
+
+### ThreadPoolExecutor
 - `ThreadPoolExecutor` from `concurrent.futures` lib. submit and collect results examples. **005**
 - **005** there is trick taht make it hard to read, `as_completed` takes `fs: Iterable` The sequnce of Futures, in code example dict is passed BUT with keys as futures which when iterate -> sequence of Futures.
 - `executor.submit()` vs. `executor.map()` **005**
-- dla context managera `ThreadPoolExecutor` exception jest propagowany ALE nie automatycznie np. dopiery wtedy gdy wywołamy metode `.result()` aby sprawdzić wynik lub w przypadku `executor.map()` **005a** oraz **005b**
+- dla context managera `ThreadPoolExecutor` exception jest propagowany ALE nie automatycznie np. dopiery wtedy gdy wywołamy metode `.result()` aby sprawdzić wynik lub w przypadku `executor.map()` **005a** oraz **005b** WNIOSEK: można na każdym wątku w pętli sprawdzić `.reslut()` opakowane w `try ... except` -> pokazane w **007**
 - **006** shows that feature`.result()` call is blocking
 - how to catch exception in thread, **007**, refactor `time.sleep(2)` part into `as_completed()`
-- numbering of task is wrong -> now I see why usefull dict{future: data} **008**
+- numbering of task is wrong -> now I see why usefull dict{future: data} **008** -> implementacja w method_3 w **005**
 - when thread raise eception it will be printed into stderr BUT will not stop main prog. **010**, debuger jest na tyle sprytny że zatrzymuje działąnie programu, natomiast runtime np. `uv run [.py]` puszcza dalej.
+
+### queue
 - `q.tack_done()` jedynie decrementuje counter kolejki, ma znaczenie jedynie dla `q.join()` kiedy moża odblokować główny wątek. **011**
 - multi workers, one queue **012**
 - multi producer-consumer pattern with queue as communication data structure **013**
