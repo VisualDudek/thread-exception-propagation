@@ -94,7 +94,7 @@ Show me:
 - tutaj chyba ai coś pomyliło z timeoutem **024**
 - efficient loop using select lib. **026**
 - **028** spory przełom, 
-- ai example trick, zobacz jak jednorazowo w pętli przekazuje to puli wątków `task_failing`:
+- ai example trick, zobacz jak jednorazowo w pętli przekazuje to puli wątków `task_failing` poprzez **ternary operator**
 ```python
     for i in range(5):
         thread = threading.Thread(target=task_failing if i == 2 else task, args=(i,))
