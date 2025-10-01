@@ -25,6 +25,7 @@ def method_1_individual_submit():
             print(f"Task {i}: {result} (took {delay:.1f}s)")
 
 # Method 2: Using map() - maintains order
+# Results collected in batch, no output until all complete
 def method_2_map():
     print("\n=== Method 2: Using map() ===")
     
