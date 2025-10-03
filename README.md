@@ -46,6 +46,7 @@ ls -l /proc/$$/fd/0
 > /proc/123/fd/0 -> /dev/pts/7
 ```
 - use `stty` to print or change termial charcteristics. checkl man for stty -> "Combination settings" GOTCHA
+- jakimi narzędziami profilować program do diagnozowania "busy-waiting"?
 
 
 ## Assignments
@@ -109,6 +110,10 @@ Najciekawsze z tego to jest to jak C wczutuje moduły Pythona i wywołuje fn-Pyt
         threads.append(thread)
         thread.start()
 ```
+- bdb przykład jak wrap-ować blocking calls e.g. `input()` **029** nadal nie podoba mi się `time.sleep(0.1)` jako rozwiązanie busy-waiting
+- ta sama logika co powyżej ale w modelu `asyncio` **030**
+- inspirujące przykłady z użyciem `cprofile` oraz `psutil` **031** oraz **032** btw `psutil` jest zewnętrzną biblioteką 
+- `psutil` w wersji `threading` **033**, PALY WITH sleep time -> CPU usage
 
 ## Comprehensive Learning Path
 
