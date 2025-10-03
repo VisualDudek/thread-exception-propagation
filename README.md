@@ -115,6 +115,7 @@ Najciekawsze z tego to jest to jak C wczutuje moduły Pythona i wywołuje fn-Pyt
 - inspirujące przykłady z użyciem `cprofile` oraz `psutil` **031** oraz **032** btw `psutil` jest zewnętrzną biblioteką 
 - `psutil` w wersji `threading` **033**, PALY WITH sleep time -> CPU usage
 
+
 ## Comprehensive Learning Path
 
 ### Foundation Level (Week 1) - Files 000-003
